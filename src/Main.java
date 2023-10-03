@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) {
         //Задача№1
         int year = 2023;
-        if (leapYearChecker(year)) {
+        if (isLeapYear(year)) {
             System.out.println(year + " год является високосным.");
         } else {
             System.out.println(year + " год не является високосным.");
@@ -12,9 +12,15 @@ public class Main {
         checkPhone(system, year);
         //Задача№3
         int deliveryDistance = 95;
-        delivery(deliveryDistance);
+        int deliveryDays = calculateDeliveryDays(deliveryDistance);
+
+        if (deliveryDays != -1) {
+            System.out.println("Потребуется дней: " + deliveryDays);
+        } else {
+            System.out.println("Доставка невозможна");
+        }
     }
-    public static boolean leapYearChecker (int year) {
+    public static boolean isLeapYear (int year) {
         if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
             return true;
         } else {
@@ -34,15 +40,15 @@ public class Main {
             System.out.println("Android.");
         }
     }
-    public static void delivery (int deliveryDistance) {
-        if (deliveryDistance < 20) {
-            System.out.println("Потребуется дней для доставки: 1");
-        } else if (deliveryDistance < 60) {
-            System.out.println("Потребуется дней для доставки: 2");
-        } else if (deliveryDistance < 100) {
-            System.out.println("Потребуется дней для доставки: 3");
+    public static int calculateDeliveryDays (int deliveryDistance) {
+        if (deliveryDistance <= 20) {
+            return 1;
+        } else if (deliveryDistance > 20 && deliveryDistance <= 60) {
+            return 2;
+        } else if (deliveryDistance > 60 && deliveryDistance <= 100) {
+            return 3;
         } else {
-            System.out.println("Доставки нет");
+            return -1;
         }
     }
 
